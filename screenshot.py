@@ -5,10 +5,12 @@ from selenium.common.exceptions import InvalidArgumentException
 
 
 class ScreenShot:
+    """Class for screenshot`s management."""
     def __init__(self, url):
         self.url = url
 
     def fullpage_screenshot(self):
+        """Take screenshot."""
         options = Options()
         options.add_argument('--ignore-certificate-errors')
         options.add_argument('--test-type')
@@ -29,9 +31,11 @@ class ScreenShot:
         driver.close()
 
     def get_photo_name(self):
+        """Create name for photo file."""
         return abs(hash(self.url))
 
     def delete_photo(self):
+        """Delete photo file after sending"""
         path = os.path.join(os.path.abspath(os.path.dirname(__file__)), f'{self.get_photo_name()}.png')
         os.remove(path)
 

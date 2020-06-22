@@ -1,12 +1,13 @@
 import telebot
 import re
 from CONFIG import token
-from screenshot import (ScreenShot)
+from screenshot import ScreenShot
 
 bot = telebot.TeleBot(token)
 
 
 def validator(message):
+    """Validate inputted url"""
     reg_url = r'^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$'
     return re.match(reg_url, message.text)
 
@@ -23,9 +24,7 @@ def default_command(message):
 
 
 def listener(messages):
-    """
-    When new messages arrive TeleBot will call this function.
-    """
+    """When new messages arrive TeleBot will call this function."""
     for m in messages:
         if m.content_type == 'text' and m.text != '/start':
             chat_id = m.chat.id
