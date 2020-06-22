@@ -27,17 +27,17 @@ def listener(messages):
     When new messages arrive TeleBot will call this function.
     """
     for m in messages:
-        if validator(m):
+        if m.content_type == 'text' and m.text != '/start':
             chat_id = m.chat.id
-            if m.content_type == 'text' and m.text != '/start':
+            if validator(m):
                 text = m.text
                 ScreenShot(text).fullpage_screenshot()
                 photo_name = ScreenShot(text).get_photo_name()
                 photo = open(f'{photo_name}.png', 'rb')
                 bot.send_document(chat_id, photo)
                 ScreenShot(text).delete_photo()
-        else:
-            bot.reply_to(m, 'Input correct url')
+            else:
+                bot.reply_to(m, 'Input correct url')
 
 
 bot.set_update_listener(listener)
