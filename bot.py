@@ -8,7 +8,7 @@ bot = telebot.TeleBot(token)
 
 def validator(message):
     """Validate inputted url"""
-    reg_url = r'^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$'
+    reg_url = r'[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)'
     return re.match(reg_url, message.text)
 
 

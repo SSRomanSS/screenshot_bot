@@ -30,7 +30,7 @@ class ScreenShot:
         except InvalidArgumentException:
             driver.get(f'https://{self.url}')
 
-        driver.set_window_size(_scroll_size('Width'), _scroll_size('Height'))
+        driver.set_window_size(1980, _scroll_size('Height'))
         driver.find_element_by_tag_name('body')
         driver.save_screenshot(f'{self.get_photo_name()}.png')
         driver.close()
